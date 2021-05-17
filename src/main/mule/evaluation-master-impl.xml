@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<flow name="get-average" doc:id="05438faf-ef01-40e1-b8ff-15d5947fdc40" >
+		<http:request method="GET" doc:name="GET /grades/average" doc:id="60672d6f-08ba-4e6b-bd19-e3a40eb9d66e" config-ref="averageHttpRequestConfig" path="${average.path}">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"assessment" : vars.assessmentId
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="017f3a04-c273-48e7-b39f-bfe50a2f8d6d" />
+	</flow>
+	<flow name="get-all-assessments" doc:id="e324667b-ddc6-4fbd-92af-69f3ae6085f4" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Assessment Controller GET Request" doc:id="56df6bb0-4a98-407d-a91c-8bdb576d3be9" config-ref="averageHttpRequestConfig" path="${assessments.path}" >
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"" : "",
+	"batchId" : vars.batchId
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Copy_of_Logger" doc:id="55b82a54-097c-4acd-ab6f-be48487ff69e" message="#[payload]" />
+	</flow>
+</mule>

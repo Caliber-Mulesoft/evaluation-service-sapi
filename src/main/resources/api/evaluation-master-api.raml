@@ -1,0 +1,103 @@
+#%RAML 1.0
+title: Evaluation Master API
+
+description: As a user, I can access the evaluation service of the Caliber Legacy API.
+version: v1
+protocols:
+  - HTTP
+
+baseUri: http://evaluation-sapi.us-e2.cloudhub.io/api
+
+types:
+  Assessment: !include DataTypes/assessmentDataType.raml
+  Grades: !include DataTypes/gradesDataType.raml
+
+/assessment:
+  get:
+    queryParameters:
+      batchId:
+        required: false
+        type: string
+      week:
+        required: false
+        type: integer
+    displayName: Get assessments
+    description: Get all assessments (can be gotten by batch Id and week).
+    responses:
+      200:
+        description: "Success"
+        body:
+          application/json:
+            type: Assessment[]
+            examples:
+              output: !include Examples/assessmentExample.raml
+
+/assessment/{id}:
+  uriParameters:
+    id:
+      required: false
+      type: integer
+  get:
+    displayName: Get assessment by ID
+    description: Get a single assessment by the ID.
+    responses:
+      200:
+        description: "Success"
+        body:
+          application/json:
+            type: Assessment[]
+            examples:
+              output: !include Examples/assessmentExample.raml
+
+/grades:
+  get:
+    displayName: Get grades.
+    description: Get all grades.
+    responses:
+      200:
+        description: "Success"
+        body:
+          application/json:
+            type: Grades[]
+            examples:
+              output: !include Examples/gradesExample.raml
+
+/grades/{id}:
+  uriParameters:
+    id:
+      required: false
+      type: integer
+  get:
+    displayName: Get grade by ID.
+    description: Get a specific grade by it's ID.
+    responses:
+      200:
+        description: "Success"
+        body:
+          application/json:
+            type: Grades[]
+            examples:
+              output: !include Examples/gradesExample.raml
+
+/average:
+  get:
+    queryParameters:
+      assessmentId:
+        required: false
+        type: integer
+      batchId:
+        required: false
+        type: string
+      week:
+        required: false
+        type: integer
+    displayName: Get average
+    description: Returns an average of grades dependent on the week, assessment or batch.
+    responses:
+      200:
+        description: "Success"
+        body:
+          application/json:
+            type: number
+            examples:
+              output: 76.988
