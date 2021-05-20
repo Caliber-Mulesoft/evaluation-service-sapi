@@ -1,9 +1,9 @@
 # Evaluation Service System API
 
-# ABOUT THE PROJECT
+## ABOUT THE PROJECT
 The Evaluation Service API app is a service level api that encapsulates assessment data from the Caliber API.
 
-# BUILT WITH
+## BUILT WITH
 - Mulesoft
 - MUnit
 - Log4J
@@ -12,7 +12,7 @@ The Evaluation Service API app is a service level api that encapsulates assessme
 - Anypoint Studio
 - REST
   
-# GETTING STARTED
+## GETTING STARTED
 - Go to ${users.home}/m2 folder:
 - Rename or delete repository
 - Rename settings.xml
@@ -21,7 +21,7 @@ The Evaluation Service API app is a service level api that encapsulates assessme
 - Deploy to CloudHub (Anypoint Platform)
 - Please refer to the SETUP document for more detailed installation steps.
 
-# PREREQUISITES
+## PREREQUISITES
 - Anypoint platform
 - Anypoint studio 7.8.0
 - OpenJDK 8
@@ -29,8 +29,9 @@ The Evaluation Service API app is a service level api that encapsulates assessme
 - HTTP connector 1.5.24
 - APIkit 1.5.1
 
-# USAGE EXAMPLES
+## USAGE EXAMPLES
 - GET all assessments: /assessments
+
 Example Response:
 ```
 [
@@ -57,6 +58,7 @@ Example Response:
 ]
 ```
 - GET assessments by ID: /assessments/{ID}
+
 Example Response:
 ```
 [
@@ -73,6 +75,7 @@ Example Response:
 ]
 ```
 - GET all grades: /grades
+
 Example Response:
 ```
 [
@@ -93,6 +96,7 @@ Example Response:
 ]
 ```
 - GET grades by ID: /grades/{ID}
+
 Example Output:
 ```
 [
@@ -106,12 +110,13 @@ Example Output:
 ]
 ```
 - GET an average of grades dependent on the week, assessment or batch: /average
+
 Example Output:
 ```
 76.988
 ```
 
-# AUTHORS
+## AUTHORS
 - Christopher Proutt
 - Diego Franchi
 - Daniel Beintema
