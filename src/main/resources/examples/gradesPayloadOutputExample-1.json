@@ -1,0 +1,16 @@
+{
+	"dateRecieved": 2021-01-06,
+	"gradeId": 24660,
+	"score": 83.40503,
+	"traineeId": "SF-1819",
+	"assessment": {
+		"assessmentCategory": 13,
+		"assessmentId": 1355,
+		"assessmentTitle": "Mock Assessment 5-2",
+		"assessmentType": "Presentation",
+		"assignmentDate": "null",
+		"batchId": "TR-1095",
+		"rawScore": 100,
+		"weekNumber": 5
+	}
+}

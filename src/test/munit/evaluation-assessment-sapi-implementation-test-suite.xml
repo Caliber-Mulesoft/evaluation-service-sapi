@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="evaluation-assessment-sapi-implementation-test-suite.xml" />
+	<munit:test name="evaluation-assessment-sapi-implementation-test-suite-get-all-assessmentsTest" doc:id="cc2d2d33-f80a-4eef-80f5-ddd033a513f3" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get-all-assessments" doc:id="b8fdc4ff-0437-4293-a75d-e0c54e9e8695" name="get-all-assessments"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="4c952e64-f3e8-44e6-9acd-9d280014def4" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="evaluation-assessment-sapi-implementation-test-suite-get-all-gradesTest" doc:id="c1684e4e-528c-4ed1-9703-3c4102934dd5" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get-all-grades" doc:id="69d2cb3c-ed93-4112-8b4e-333257919076" name="get-all-grades"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="fa1d73c7-d927-4883-a39e-60390b9be80b" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="evaluation-assessment-sapi-implementation-test-suite-get-assessment-by-idTest" doc:id="69d207f0-aeeb-427e-af8b-2d033c6211ac" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get-assessment-by-id" doc:id="54af6840-c4de-42a3-a609-0a27f7f1b1b1" name="get-assessment-by-id"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

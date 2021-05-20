@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="gradesPayloadOutputExample" format="json">
+      <types:shape format="weave" example="examples/gradesPayloadOutputExample-1.json"><![CDATA[%dw 2.0
+
+type gradesPayloadOutputExample = {|
+  dateRecieved: String, 
+  gradeId: Number {"typeId": "int"}, 
+  score: Number {"typeId": "double"}, 
+  traineeId: String, 
+  assessment: {|
+    assessmentCategory: Number {"typeId": "int"}, 
+    assessmentId: Number {"typeId": "int"}, 
+    assessmentTitle: String, 
+    assessmentType: String, 
+    assignmentDate: String, 
+    batchId: String, 
+    rawScore: Number {"typeId": "int"}, 
+    weekNumber: Number {"typeId": "int"}
+  |}
+|} {"example": "{\\\"dateRecieved\\\":\\\"2021-01-06\\\",\\\"gradeId\\\":24660,\\\"score\\\":83.40503,\\\"traineeId\\\":\\\"SF-1819\\\",\\\"assessment\\\":{\\\"assessmentCategory\\\":13,\\\"assessmentId\\\":1355,\\\"assessmentTitle\\\":\\\"Mock Assessment 5-2\\\",\\\"assessmentType\\\":\\\"Presentation\\\",\\\"assignmentDate\\\":\\\"null\\\",\\\"batchId\\\":\\\"TR-1095\\\",\\\"rawScore\\\":100,\\\"weekNumber\\\":5}}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+</types:mule>
