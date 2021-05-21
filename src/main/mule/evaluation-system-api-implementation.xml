@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	
+	<flow name="get-average" doc:id="05438faf-ef01-40e1-b8ff-15d5947fdc40" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Grades Controller GET: /grades/average Request" doc:id="60672d6f-08ba-4e6b-bd19-e3a40eb9d66e" config-ref="CaliberAPI_Evaluation_Service_Http_Request_Config" path="${average.path}">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"assessment" : vars.assessmentId
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="017f3a04-c273-48e7-b39f-bfe50a2f8d6d" />
+	</flow>
+	<flow name="get-all-assessments" doc:id="e324667b-ddc6-4fbd-92af-69f3ae6085f4" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Assessment Controller GET: /assessments Request" doc:id="56df6bb0-4a98-407d-a91c-8bdb576d3be9" config-ref="CaliberAPI_Evaluation_Service_Http_Request_Config" path="${assessments.path}" >
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"" : "",
+	"batchId" : vars.batchId
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="55b82a54-097c-4acd-ab6f-be48487ff69e" message="#[payload]" />
+	</flow>
+	
+	<flow name="get-all-grades" doc:id="bf25f499-ce45-4216-95d1-15df52fbf0b9" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Grades Controller GET: /grades Request" doc:id="1b5989b8-fd2a-4f99-847d-fe230a1fd43c" config-ref="CaliberAPI_Evaluation_Service_Http_Request_Config" path="${grades.path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="98283452-bf81-4cf2-99a6-f64f93c67352" message="#[payload]"/>
+	</flow>
+	
+	
+	<flow name="get-assessment-by-id" doc:id="44d8234c-b6e5-4c70-93a7-6d99d81b096c" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Assessment Controller GET: /assessments/{id} Request" doc:id="6b2a734d-d2ae-4e93-9851-f1d34a973afe" config-ref="CaliberAPI_Evaluation_Service_Http_Request_Config" path="${assessments.path}/{id}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	id : attributes.uriParams.'id'
+}]]]></http:uri-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="c745bf05-b72e-4036-9865-5d52185b22bc" message="#[payload]"/>
+	</flow>
+	
+	
+	<flow name="get-grades-by-id" doc:id="3fd8e5cf-4f43-487d-8923-c990c52e5ef5" >
+		<http:request method="GET" doc:name="CaliburAPI - Evaluation Service - Grades Controller GET: /grades/{id} Request" doc:id="c022977a-4bb7-47ce-af97-f5f259168826" config-ref="CaliberAPI_Evaluation_Service_Http_Request_Config" path="${grades.path}/{id}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	id : attributes.uriParams.'id'
+}]]]></http:uri-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="db3a66fe-2d6b-4eb1-8bce-7996882408c8" message="#[payload]"/>
+	</flow>
+	
+</mule>
